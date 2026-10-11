@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VoltAI: Face &amp; Body Coach</title>
+<meta name="description" content="Scan your face and body, get scores with a clear breakdown, and follow a 3–30 day plan built around your goals. Snap your fridge for recipes that fit.">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<meta property="og:title" content="VoltAI: Face &amp; Body Coach">
+<meta property="og:description" content="AI scans, personal plans, and fridge recipes. Private by design.">
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #000; --night: #0B0618; --midnight: #160C33;
+    --card: rgba(255,255,255,.06); --stroke: rgba(255,255,255,.12);
+    --text: #fff; --muted: rgba(255,255,255,.68);
+    --purple: #8B5CF6; --violet: #A855F7; --pink: #EC4899; --blush: #F9A8D4; --blue: #60A5FA; --ice: #BAE6FD;
+    --brand: linear-gradient(90deg, var(--purple), var(--pink));
+    --glow: linear-gradient(135deg, var(--blue), var(--purple) 50%, var(--pink));
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  .grad { background: var(--glow); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--blush); margin: 0 0 12px; }
+  h1, h2, h3 { line-height: 1.12; letter-spacing: -.02em; margin: 0; }
+  h2 { font-size: clamp(30px, 4.5vw, 46px); }
+  .lead { color: var(--muted); font-size: clamp(17px, 2vw, 20px); }
+
+  /* Nav */
+  nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background: rgba(0,0,0,.6); border-bottom: 1px solid rgba(255,255,255,.06); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; text-decoration: none; }
+  .logo img { width: 34px; height: 34px; border-radius: 9px; }
+  .nav-links { display: flex; gap: 28px; align-items: center; font-size: 15px; }
+  .nav-links a { text-decoration: none; color: var(--muted); }
+  .nav-links a:hover { color: var(--text); }
+  @media (max-width: 720px) { .nav-links a:not(.btn) { display: none; } }
+
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 999px; font-weight: 700; text-decoration: none; background: var(--brand); color: #fff !important; box-shadow: 0 8px 30px rgba(236,72,153,.35); transition: transform .15s, box-shadow .15s; }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 40px rgba(236,72,153,.5); }
+  .btn.small { padding: 8px 16px; font-size: 14px; box-shadow: none; }
+  .btn.ghost { background: var(--card); border: 1px solid var(--stroke); box-shadow: none; }
+  .appstore { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 14px; background: #fff; color: #000; text-decoration: none; }
+  .appstore svg { width: 26px; height: 26px; }
+  .appstore small { display: block; font-size: 11px; line-height: 1.1; opacity: .7; }
+  .appstore b { display: block; font-size: 19px; line-height: 1.1; }
+
+  /* Hero */
+  .hero { position: relative; padding: 72px 0 40px; }
+  .hero::before { content: ""; position: absolute; inset: -200px -20% auto; height: 900px; background: radial-gradient(closest-side at 70% 40%, rgba(139,92,246,.35), transparent), radial-gradient(closest-side at 85% 20%, rgba(96,165,250,.22), transparent), radial-gradient(closest-side at 60% 70%, rgba(236,72,153,.22), transparent); pointer-events: none; z-index: -1; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: clamp(42px, 7vw, 76px); font-weight: 800; margin-bottom: 20px; }
+  .hero .lead { max-width: 520px; margin: 0 0 32px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .note { color: var(--muted); font-size: 14px; margin-top: 18px; }
+  .hero-phones { position: relative; height: 620px; }
+  .hero-phones .phone { position: absolute; }
+  .hero-phones .phone:first-child { left: 0; top: 40px; transform: rotate(-6deg); opacity: .85; }
+  .hero-phones .phone:last-child { right: 0; top: 0; transform: rotate(4deg); }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero .lead { margin-inline: auto; }
+    .cta { justify-content: center; }
+    .hero-phones { height: 640px; max-width: 460px; margin: 0 auto; width: 100%; }
+  }
+
+  .phone { width: 260px; aspect-ratio: 720 / 1564; border-radius: 40px; padding: 8px; background: linear-gradient(160deg, #2a2440, #0d0a17); box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 30px 80px rgba(139,92,246,.35); }
+  .phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 32px; }
+  @media (max-width: 480px) { .phone { width: 190px; } .hero-phones { height: 460px; max-width: 340px; } }
+
+  /* Stats strip */
+  .strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 40px; padding: 28px 0 0; color: var(--muted); font-size: 15px; }
+  .strip span { display: inline-flex; align-items: center; gap: 8px; }
+  .strip span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--glow); }
+
+  /* Features */
+  section { padding: 100px 0; }
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .feature + .feature { margin-top: 120px; }
+  .feature.flip .copy { order: 2; }
+  .feature .media { display: flex; justify-content: center; position: relative; }
+  .feature .media::before { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(closest-side, rgba(139,92,246,.35), transparent); top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; }
+  .feature .phone { width: 290px; }
+  .feature p.lead { margin: 18px 0 24px; }
+  .ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .ticks li { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); }
+  .ticks li::before { content: ""; flex: none; width: 20px; height: 20px; margin-top: 3px; border-radius: 50%; background: var(--brand) center / 12px no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.2 2.2 4.8-4.8' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"), var(--brand); }
+  @media (max-width: 900px) {
+    .feature { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .feature.flip .copy { order: 0; }
+    .ticks { text-align: left; max-width: 420px; margin: 0 auto; }
+    .feature .phone { width: 250px; }
+  }
+
+  /* How it works */
+  .how { background: linear-gradient(180deg, transparent, var(--night) 20%, var(--night) 80%, transparent); }
+  .center { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+  .center .lead { margin-top: 16px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--stroke); border-radius: 24px; padding: 28px; }
+  .step .num { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; background: var(--brand); margin-bottom: 18px; }
+  .step h3 { font-size: 21px; margin-bottom: 8px; }
+  .step p { color: var(--muted); margin: 0; }
+  @media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
+
+  /* Privacy */
+  .privacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .privacy-grid .card h3 { font-size: 19px; margin: 14px 0 8px; }
+  .privacy-grid .card p { color: var(--muted); margin: 0; font-size: 16px; }
+  .icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: rgba(139,92,246,.18); border: 1px solid rgba(139,92,246,.35); }
+  .icon svg { width: 22px; height: 22px; stroke: var(--blush); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  @media (max-width: 800px) { .privacy-grid { grid-template-columns: 1fr; } }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; max-width: 940px; margin: 0 auto; }
+  .plan { display: flex; flex-direction: column; }
+  .plan h3 { font-size: 18px; color: var(--muted); font-weight: 600; }
+  .plan .price { font-size: 44px; font-weight: 800; letter-spacing: -.02em; margin: 8px 0 2px; }
+  .plan .price small { font-size: 17px; font-weight: 500; color: var(--muted); }
+  .plan .sub { color: var(--muted); font-size: 15px; margin: 0 0 20px; min-height: 24px; }
+  .plan.best { position: relative; border: 1px solid transparent; background: linear-gradient(#0e0a1c, #0e0a1c) padding-box, var(--glow) border-box; box-shadow: 0 20px 60px rgba(139,92,246,.25); }
+  .badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--brand); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; white-space: nowrap; }
+  .free { max-width: 940px; margin: 20px auto 0; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+  .free p { margin: 0; color: var(--muted); }
+  .free strong { color: var(--text); }
+  .fine { text-align: center; color: var(--muted); font-size: 13px; max-width: 700px; margin: 24px auto 0; }
+  @media (max-width: 800px) { .plans { grid-template-columns: 1fr; max-width: 420px; } .plan.best { order: -1; } }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+  details { background: var(--card); border: 1px solid var(--stroke); border-radius: 18px; padding: 0 24px; }
+  summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 600; font-size: 18px; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 24px; line-height: 1; color: var(--blush); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--muted); margin: 0 0 20px; }
+
+  /* Final CTA */
+  .final { text-align: center; position: relative; }
+  .final::before { content: ""; position: absolute; inset: 0; background: radial-gradient(closest-side at 50% 60%, rgba(236,72,153,.22), transparent 70%), radial-gradient(closest-side at 40% 40%, rgba(96,165,250,.18), transparent 70%); z-index: -1; }
+  .final img.app-icon { width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; box-shadow: 0 20px 60px rgba(139,92,246,.5); }
+  .final .lead { margin: 16px auto 32px; max-width: 520px; }
+
+  footer { border-top: 1px solid rgba(255,255,255,.08); padding: 40px 0 56px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
+  footer nav { all: unset; display: flex; gap: 24px; flex-wrap: wrap; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--text); }
+  .social { display: inline-flex; align-items: center; gap: 6px; }
+  .social svg { width: 16px; height: 16px; }
+  .follow { color: var(--muted); margin: 28px 0 0; font-size: 15px; }
+  .follow a { color: var(--text); font-weight: 600; text-decoration: none; }
+  .follow a:hover { color: var(--blush); }
+  .disclaimer { flex-basis: 100%; font-size: 13px; opacity: .8; }
+
+  .js .reveal:not(.in) { transform: translateY(16px); }
+  .reveal { transition: transform .7s ease; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal:not(.in) { transform: none; } .reveal { transition: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top"><img src="assets/icon.png" alt=""><span>Volt<span class="grad">AI</span></span></a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn small" href="#download">Get the app</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Your AI wellness coach</p>
+      <h1>Scan. Plan.<br><span class="grad">Level up.</span></h1>
+      <p class="lead">Scan your face and body, get scores with a clear breakdown of what's working and what to improve, then follow a 3–30 day plan built around your goals.</p>
+      <div class="cta">
+        <a class="appstore" href="#download" aria-label="Coming soon on the App Store">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.06-.52 2.69-1.27z"/></svg>
+          <span><small>Coming soon on the</small><b>App Store</b></span>
+        </a>
+        <a class="btn ghost" href="#features">See how it works</a>
+      </div>
+      <p class="note">Your first scan is free. No account needed.</p>
+    </div>
+    <div class="hero-phones" aria-hidden="true">
+      <div class="phone"><img src="assets/5-home.jpg" alt=""></div>
+      <div class="phone"><img src="assets/1-result.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="wrap strip">
+    <span>Face &amp; body scores</span>
+    <span>3–30 day plans</span>
+    <span>Fridge AI recipes</span>
+    <span>Data stays on your phone</span>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="feature reveal">
+      <div class="copy">
+        <p class="eyebrow">Scan your face &amp; body</p>
+        <h2>Know exactly <span class="grad">where you stand.</span></h2>
+        <p class="lead">Take a face photo and a body photo. VoltAI scores your skin health and fitness, then explains why, with a concrete action for every area.</p>
+        <ul class="ticks">
+          <li>Face: skin clarity, texture, under-eyes and puffiness, grooming</li>
+          <li>Body: body composition, muscle development, posture, balance</li>
+          <li>Your top three priorities, in plain language</li>
+        </ul>
+      </div>
+      <div class="media"><div class="phone"><img src="assets/1-result.jpg" alt="VoltAI scan results showing face and body scores with an overview and top priorities" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature flip reveal">
+      <div class="copy">
+        <p class="eyebrow">Your personal plan</p>
+        <h2>A plan that <span class="grad">fits your goals.</span></h2>
+        <p class="lead">Choose 3 to 30 days. VoltAI turns your scan and goals into simple daily habits that build gradually, with rest days built in.</p>
+        <ul class="ticks">
+          <li>Workouts, skincare, sleep, hydration and nutrition</li>
+          <li>Check tasks off and build a daily streak</li>
+          <li>Gentle reminders at the time you choose</li>
+        </ul>
+      </div>
+      <div class="media"><div class="phone"><img src="assets/2-plan.jpg" alt="VoltAI daily plan with checklist of tasks" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="copy">
+        <p class="eyebrow">Fridge AI</p>
+        <h2>Snap your fridge. <span class="grad">Eat for your goals.</span></h2>
+        <p class="lead">Photograph your fridge, freezer or pantry, or just type what you have. Get three recipes that match your goals, diet and allergies.</p>
+        <ul class="ticks">
+          <li>Step-by-step instructions with realistic cook times</li>
+          <li>Honest nutrition estimates for every recipe</li>
+          <li>Save your favorites for later</li>
+        </ul>
+      </div>
+      <div class="media"><div class="phone"><img src="assets/4-recipe.jpg" alt="A Fridge AI recipe with ingredients and nutrition" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature flip reveal">
+      <div class="copy">
+        <p class="eyebrow">Track your progress</p>
+        <h2>See how far <span class="grad">you've come.</span></h2>
+        <p class="lead">Rescan anytime and watch your scores change over time. Every scan is saved on your phone so you can look back.</p>
+        <ul class="ticks">
+          <li>Score history for face and body</li>
+          <li>A nudge to rescan after a week</li>
+          <li>Every past result, one tap away</li>
+        </ul>
+      </div>
+      <div class="media"><div class="phone"><img src="assets/3-progress.jpg" alt="Progress chart of VoltAI scores over time" loading="lazy"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps to <span class="grad">a better routine.</span></h2>
+    </div>
+    <div class="steps">
+      <div class="card step reveal"><div class="num">1</div><h3>Set your goals</h3><p>Tell VoltAI what you want to improve, how active you are, and any diet or allergy needs.</p></div>
+      <div class="card step reveal"><div class="num">2</div><h3>Take your scan</h3><p>Two clothed photos, one of your face and one of your body. Results arrive in moments.</p></div>
+      <div class="card step reveal"><div class="num">3</div><h3>Follow your plan</h3><p>Daily tasks built from your results. Check them off, keep your streak, rescan to see progress.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Private by design</p>
+      <h2>Your data stays <span class="grad">on your phone.</span></h2>
+      <p class="lead">No sign-up, no profile on our servers, no ads.</p>
+    </div>
+    <div class="privacy-grid">
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/><path d="M3 3l18 18"/></svg></div>
+        <h3>No account</h3>
+        <p>Open the app and start. There's no email, password, or login to create.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3>Stored on device</h3>
+        <p>Your profile, scan results, plans and saved recipes live only on your iPhone.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3>Photos never stored</h3>
+        <p>Photos are sent securely for analysis and are never saved on our servers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="how">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">VoltAI Pro</p>
+      <h2>Start free. <span class="grad">Go Pro when ready.</span></h2>
+      <p class="lead">Pro unlocks unlimited scans, personal plans and Fridge AI.</p>
+    </div>
+    <div class="plans">
+      <div class="card plan reveal">
+        <h3>Weekly</h3>
+        <div class="price">$1.99<small> / week</small></div>
+        <p class="sub">Try it out</p>
+      </div>
+      <div class="card plan best reveal">
+        <span class="badge">Best value</span>
+        <h3>Yearly</h3>
+        <div class="price">$59.99<small> / year</small></div>
+        <p class="sub">3-day free trial · about $1.15 a week</p>
+      </div>
+      <div class="card plan reveal">
+        <h3>Monthly</h3>
+        <div class="price">$5.99<small> / month</small></div>
+        <p class="sub">Flexible</p>
+      </div>
+    </div>
+    <div class="card free reveal">
+      <p><strong>Free:</strong> your first face and body scan with the full breakdown.</p>
+      <p><strong>Pro:</strong> unlimited scans · 3–30 day plans · Fridge AI · progress tracking</p>
+    </div>
+    <p class="fine">Prices in USD. Payment is charged to your Apple ID. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period. Manage or cancel anytime in Settings.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions, <span class="grad">answered.</span></h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>What do the scores measure?</summary><p>VoltAI looks at health and fitness signals: skin clarity and texture, under-eye puffiness and grooming for your face, and body composition, muscle development, posture and balance for your body. Every score comes with an explanation and a concrete next step.</p></details>
+      <details class="reveal"><summary>What photos do I need?</summary><p>One face photo and one body photo. Wear clothes you'd work out in; VoltAI only accepts clothed photos. Good, even lighting gives the most accurate results.</p></details>
+      <details class="reveal"><summary>Do I need an account?</summary><p>No. There's nothing to sign up for. Everything you create stays on your phone.</p></details>
+      <details class="reveal"><summary>Are my photos stored anywhere?</summary><p>No. Photos are sent securely to be analyzed and are not stored on our servers. See the <a href="privacy.html">privacy policy</a> for the details.</p></details>
+      <details class="reveal"><summary>What's included for free?</summary><p>Your first scan, with full face and body scores and the breakdown. More scans, personal plans and Fridge AI are part of VoltAI Pro.</p></details>
+      <details class="reveal"><summary>How do I cancel my subscription?</summary><p>Open the Settings app on your iPhone, tap your name, then Subscriptions, and choose VoltAI. You can cancel anytime; Pro stays active until the end of the period you've paid for.</p></details>
+      <details class="reveal"><summary>Is this medical advice?</summary><p>No. VoltAI provides general wellness guidance. Talk to a doctor before starting a new diet or exercise program.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="download">
+  <div class="wrap reveal">
+    <img class="app-icon" src="assets/icon.png" alt="VoltAI app icon">
+    <h2>Your glow-up <span class="grad">starts with one scan.</span></h2>
+    <p class="lead">VoltAI is coming soon to iPhone. Your first scan is free.</p>
+    <a class="appstore" href="#download" aria-label="Coming soon on the App Store">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.06-.52 2.69-1.27z"/></svg>
+      <span><small>Coming soon on the</small><b>App Store</b></span>
+    </a>
+    <p class="follow">Follow along on TikTok: <a class="social" href="https://www.tiktok.com/@voltfitai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.6c.27 0 .53.04.77.11V9.75a5.73 5.73 0 0 0-.77-.05A5.69 5.69 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.24-1.48z"/></svg>@voltfitai</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top"><img src="assets/icon.png" alt=""><span>Volt<span class="grad">AI</span></span></a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+      <a href="mailto:SUPPORT_EMAIL">Support</a>
+      <a class="social" href="https://www.tiktok.com/@voltfitai" target="_blank" rel="noopener" aria-label="VoltAI on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.6c.27 0 .53.04.77.11V9.75a5.73 5.73 0 0 0-.77-.05A5.69 5.69 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.24-1.48z"/></svg>@voltfitai</a>
+    </nav>
+    <p class="disclaimer">© <span id="year">2026</span> VoltAI. General wellness guidance, not medical advice. Apple and the App Store are trademarks of Apple Inc.</p>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add("js");
+  document.getElementById("year").textContent = new Date().getFullYear();
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
