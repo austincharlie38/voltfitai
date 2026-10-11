@@ -4,19 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VoltAI Privacy Policy</title>
+<meta name="description" content="How VoltAI handles your photos and information: what stays on your phone, what's sent for AI analysis, who processes it, and how long it's kept.">
 <style>
-  :root { --bg: #000; --card: #111; --text: #fff; --muted: rgba(255,255,255,.7); --pink: #EC4899; --purple: #8B5CF6; --blue: #60A5FA; }
+  :root { --bg: #000; --card: #111; --text: #fff; --muted: rgba(255,255,255,.72); --stroke: rgba(255,255,255,.12); --pink: #EC4899; --purple: #8B5CF6; --blue: #60A5FA; }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 760px; margin: 0 auto; padding: 48px 20px 80px; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 780px; margin: 0 auto; padding: 48px 20px 80px; }
   h1 { font-size: 34px; line-height: 1.2; margin: 0 0 6px; }
   h1 span { background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  h2 { font-size: 20px; margin: 36px 0 8px; }
+  h2 { font-size: 21px; margin: 40px 0 8px; scroll-margin-top: 16px; }
+  h3 { font-size: 17px; margin: 22px 0 6px; }
   p, li { color: var(--muted); }
   strong { color: var(--text); }
   .date { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
-  .card { background: var(--card); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 18px 20px; margin: 20px 0; }
+  .card { background: var(--card); border: 1px solid var(--stroke); border-radius: 16px; padding: 18px 20px; margin: 20px 0; }
+  .card p { margin: 0 0 10px; } .card p:last-child { margin: 0; }
   a { color: var(--pink); }
+  .table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--stroke); border-radius: 14px; }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14.5px; }
+  th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--stroke); }
+  th { color: var(--text); background: #161616; font-weight: 700; }
+  td { color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  nav.toc { columns: 2; column-gap: 28px; font-size: 15px; }
+  nav.toc a { display: block; color: var(--muted); text-decoration: none; padding: 2px 0; }
+  nav.toc a:hover { color: var(--text); }
+  @media (max-width: 560px) { nav.toc { columns: 1; } }
 </style>
 </head>
 <body>
@@ -26,67 +39,146 @@
   <p class="date">Effective October 11, 2026</p>
 
   <div class="card">
-    <p><strong>The short version:</strong> VoltAI has no accounts. Your profile, scan results, plans, and saved recipes stay on your phone. When you use an AI feature, the photos and details it needs are sent securely to be analyzed, the result is sent back to your phone, and we don't store your photos or results on our servers. We don't sell your data, show ads, or track you across apps.</p>
+    <p><strong>The short version</strong></p>
+    <p>VoltAI has no accounts. Your profile, results, plans, and saved recipes are stored only on your iPhone.</p>
+    <p>VoltAI's AI analysis does <strong>not</strong> run on your phone. When you start a scan, build a plan, or use Fridge AI, and only after you've given permission in the app, the photos and details that feature needs are sent over an encrypted connection to our server and on to our AI provider, <strong>Anthropic</strong> (the company behind the Claude AI model). Your result comes back to your phone.</p>
+    <p><strong>VoltAI does not store your photos or results on any server.</strong> Anthropic does not use them to train AI and deletes them within 30 days, unless they're flagged for a safety review.</p>
+    <p>We don't sell your data, show ads, use analytics, or track you across apps and websites.</p>
   </div>
 
-  <h2>Information stored on your device</h2>
-  <p>VoltAI stores the following on your iPhone only:</p>
+  <nav class="toc" aria-label="Contents">
+    <a href="#at-a-glance">At a glance</a>
+    <a href="#on-device">Stored on your iPhone</a>
+    <a href="#ai">AI analysis and your permission</a>
+    <a href="#face-body">Face and body photos</a>
+    <a href="#providers">Who processes your data</a>
+    <a href="#retention">How long data is kept</a>
+    <a href="#not-collected">What we don't collect</a>
+    <a href="#permissions">Camera, photos, and notifications</a>
+    <a href="#purchases">Subscriptions</a>
+    <a href="#waitlist">Website waitlist</a>
+    <a href="#health-data">Consumer health data</a>
+    <a href="#rights">Your choices and rights</a>
+    <a href="#security">Security</a>
+    <a href="#age">Age</a>
+    <a href="#wellness">Wellness, not medical advice</a>
+    <a href="#changes">Changes and contact</a>
+  </nav>
+
+  <h2 id="at-a-glance">At a glance</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Information</th><th>Where it goes</th><th>How long it's kept</th></tr></thead>
+      <tbody>
+        <tr><td>Your profile (name, birthday, goals, sex, activity level, diet, allergies, plan length, goal description)</td><td>Your iPhone only. Some details are included in AI requests (see below); your name and birthday are never sent, only your age.</td><td>Until you delete it or the app</td></tr>
+        <tr><td>Scan results, plans, checklist progress, saved recipes</td><td>Your iPhone only</td><td>Until you delete them or the app</td></tr>
+        <tr><td>Small copies of your scan photos (for progress history)</td><td>Your iPhone only</td><td>Until you delete the scan or the app</td></tr>
+        <tr><td>Photos and details you submit for a scan, plan, or Fridge AI</td><td>Encrypted to VoltAI's server (Supabase), then to Anthropic for AI analysis</td><td>VoltAI: not stored; held in memory only while your request is processed. Anthropic: deleted within 30 days unless flagged for a safety review; never used for AI training.</td></tr>
+        <tr><td>Technical request logs</td><td>VoltAI's server (Supabase)</td><td>Short-term, for reliability and security. No photos or answers.</td></tr>
+        <tr><td>Waitlist email (website only)</td><td>VoltAI's database (Supabase)</td><td>Until launch news ends or you ask us to remove it</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="on-device">Information stored on your iPhone</h2>
+  <p>VoltAI keeps the following only on your iPhone, in the app's private storage:</p>
   <ul>
     <li>Your onboarding answers: name (optional), birthday, goals, sex, activity level, diet, allergies, plan length, and anything you write about your goals.</li>
-    <li>Your scan results, including small copies of your face and body photos so you can track progress.</li>
-    <li>Your improvement plan and checklist progress, and recipes you save.</li>
+    <li>Your scan results, including small copies of your face and body photos so you can compare progress.</li>
+    <li>Your improvement plan, checklist progress, reminder settings, and recipes you save.</li>
   </ul>
-  <p>We can't see this information. Deleting the app deletes it.</p>
+  <p>We can't see or access this information. It's included in your iPhone's own backups if you use iCloud or computer backups, under Apple's privacy terms. Deleting a scan removes it; deleting the app removes everything.</p>
 
-  <h2>Information sent for AI analysis</h2>
-  <p>VoltAI uses artificial intelligence to power its features. When you use one, your phone sends the information below to our server, which passes it to our AI provider and returns the result:</p>
+  <h2 id="ai">AI analysis and your permission</h2>
+  <p>VoltAI's scans, plans, and Fridge AI are powered by artificial intelligence that runs on a server, not on your device. <strong>Before anything is sent, VoltAI asks for your permission</strong> on a screen that explains what's sent, where it goes, and how long it's kept. If you don't agree, nothing is sent, and the AI features stay off. You can withdraw permission anytime in <strong>Profile → Privacy → AI processing</strong>.</p>
+  <p>Data is sent only when you start one of these features yourself:</p>
   <ul>
-    <li><strong>Face and body scan:</strong> your face and body photos, plus your age, sex, activity level, goals, plan length, and goal description.</li>
-    <li><strong>Improvement plan:</strong> your profile details above, your diet and allergies, and a summary of your latest scan (scores and suggestions, not photos).</li>
-    <li><strong>Fridge AI:</strong> photos of your food, any items you type in, and your age, goals, diet, allergies, and latest scan priorities.</li>
+    <li><strong>Face and body scan:</strong> the face and body photos you take or choose, plus your age, sex, activity level, goals, plan length, and goal description.</li>
+    <li><strong>Improvement plan:</strong> the profile details above, your diet and allergies, and a summary of your latest scan (scores and suggestions; no photos).</li>
+    <li><strong>Fridge AI:</strong> the food photos you take or choose (fridge, freezer, pantry, or single items), any food items you type, and your age, goals, diet, allergies, and latest scan priorities.</li>
   </ul>
-  <p>This information is used only to create your result. Our server does not save your photos or your results. Our server keeps limited technical logs (such as the time of a request, whether it succeeded, and how much processing it used) to keep the service working and secure; these logs don't contain your photos or answers.</p>
+  <p>Photos are resized and compressed on your phone before sending. They travel over an encrypted (HTTPS/TLS) connection to VoltAI's server, which forwards them to Anthropic, receives the result, and returns it to your phone. VoltAI's server holds your photos and details in memory only while it processes your request (usually under a minute) and then discards them. It doesn't save them to a database, file storage, or logs. Your result is saved only on your phone.</p>
+  <p>We use this information only to create the result you asked for. We don't use it for advertising, profiling, or training AI models.</p>
+
+  <h2 id="face-body">Face and body photos</h2>
+  <ul>
+    <li>VoltAI's AI looks at visible fitness and skin-health signals (such as posture, muscle development, skin clarity, and under-eye puffiness) to produce estimated scores and tips. It never rates attractiveness.</li>
+    <li>VoltAI does <strong>not</strong> use facial recognition, does not create face geometry, faceprints, or other biometric identifiers, and does not use photos to identify you.</li>
+    <li>VoltAI never accesses Face ID or Touch ID data.</li>
+    <li>VoltAI only analyzes photos of people in clothing (for example, gym wear). The AI asks you to retake photos that show nudity or underwear only.</li>
+    <li>Your photos are never shared with anyone except Anthropic, for the sole purpose of producing your result.</li>
+  </ul>
+
+  <h2 id="providers">Who processes your data</h2>
+  <p>We use two service providers to run VoltAI's AI features. They act on our behalf, under contracts that limit how they can use your data:</p>
+  <ul>
+    <li><strong>Supabase</strong> hosts VoltAI's server (in the United States), which receives AI requests and forwards them, and stores waitlist emails from our website.</li>
+    <li><strong>Anthropic</strong> provides the Claude AI model that analyzes photos and writes results. Under its commercial terms, Anthropic doesn't train its models on this data and deletes it within 30 days, except where it's flagged for trust and safety review or must be kept by law. See <a href="https://www.anthropic.com/legal/privacy" rel="noopener">Anthropic's privacy policy</a>.</li>
+  </ul>
+  <p><strong>Apple</strong> processes subscription payments (see below). These providers may automatically log technical details such as IP addresses to operate and secure their services.</p>
+  <p>We don't sell, rent, or share your personal information for advertising or cross-context behavioral advertising. We'd only disclose information if required by law, and since we don't store your photos or results, we generally have nothing to disclose.</p>
+
+  <h2 id="retention">How long data is kept</h2>
+  <ul>
+    <li><strong>On your iPhone:</strong> until you delete it or the app.</li>
+    <li><strong>VoltAI's server:</strong> photos and details aren't stored; they're discarded as soon as your result is returned. Technical logs (time of request, whether it succeeded, how much processing it used) contain no photos or answers and are kept only briefly for reliability and security.</li>
+    <li><strong>Anthropic:</strong> deleted within 30 days, unless flagged for a safety review or legally required to be kept longer.</li>
+    <li><strong>Waitlist emails:</strong> until we stop sending launch news or you ask us to remove yours.</li>
+  </ul>
+
+  <h2 id="not-collected">What we don't collect</h2>
+  <ul>
+    <li>No account, email, password, or login in the app.</li>
+    <li>No location, contacts, microphone, or health data from Apple Health.</li>
+    <li>No advertising identifiers, no analytics or tracking tools, and no tracking across other companies' apps or websites.</li>
+    <li>No payment details (Apple handles payments).</li>
+  </ul>
+
+  <h2 id="permissions">Camera, photos, and notifications</h2>
+  <ul>
+    <li><strong>Camera:</strong> used only when you choose to take a face, body, or food photo.</li>
+    <li><strong>Photos:</strong> VoltAI uses Apple's photo picker, so the app only receives the photos you select. It can't see the rest of your library.</li>
+    <li><strong>Notifications:</strong> plan, streak, and scan reminders are scheduled on your iPhone. No notification data is sent to us.</li>
+  </ul>
+  <p>You can change these permissions anytime in your iPhone's Settings → VoltAI.</p>
+
+  <h2 id="purchases">Subscriptions</h2>
+  <p>VoltAI Pro is sold through Apple's App Store. Apple processes payment using your Apple ID; we never receive your name, email, or payment details. The app checks your subscription status with Apple on your device.</p>
 
   <h2 id="waitlist">Website waitlist</h2>
-  <p>If you join the waitlist on our website, we store your email address, the date you joined, and how you found us (for example, from TikTok). We use your email only to tell you when VoltAI launches and for occasional launch news. We don't share it or sell it. To be removed, email us at the address below and we'll delete it. The app itself doesn't use your waitlist email.</p>
+  <p>If you join the waitlist on our website, we store your email address, the date you joined, and how you found us (for example, from TikTok). We use your email only to tell you when VoltAI launches and for occasional launch news. We don't share or sell it. When someone joins, we get an alert with the total count and source only, never the email. To be removed, email us and we'll delete it. The app doesn't use or connect to your waitlist email.</p>
 
-  <h2>Service providers</h2>
+  <h2 id="health-data">Consumer health data</h2>
+  <p>Some information VoltAI handles, such as body and skin-health estimates, goals, activity level, and diet, may be considered "consumer health data" under laws like Washington's My Health My Data Act. Specifically:</p>
   <ul>
-    <li><strong>Supabase</strong> hosts the server that handles AI requests and stores waitlist emails.</li>
-    <li><strong>Anthropic</strong> provides the AI (Claude) that analyzes photos and writes results. Anthropic processes this information on our behalf under its commercial terms, does not use it to train its models, and may keep it for a limited time for safety and abuse prevention, as described in <a href="https://www.anthropic.com/legal/privacy">Anthropic's privacy policy</a>.</li>
-    <li><strong>Apple</strong> handles subscriptions and payments. We never see your payment details; we only learn whether your subscription is active.</li>
-  </ul>
-  <p>These providers may log technical information such as IP addresses to operate and secure their services.</p>
-
-  <h2>What we don't do</h2>
-  <ul>
-    <li>We don't sell or rent your information.</li>
-    <li>We don't use advertising, ad tracking, or third-party analytics.</li>
-    <li>We don't use your photos to rate attractiveness, and we don't share them with anyone except to produce your results as described above.</li>
+    <li><strong>What:</strong> the photos and details listed in <a href="#ai">AI analysis</a>, and the results produced from them.</li>
+    <li><strong>Why:</strong> only to provide the scans, plans, and recipes you request.</li>
+    <li><strong>Shared with:</strong> Supabase and Anthropic as our processors, as described above. Never sold.</li>
+    <li><strong>Your consent:</strong> collected in the app before any data is sent, and you can withdraw it anytime in Profile.</li>
+    <li><strong>Your rights:</strong> you can confirm what we hold, ask us to delete it, and withdraw consent by contacting us. Since results and profiles are stored only on your phone, you can also delete them directly in the app.</li>
   </ul>
 
-  <h2>Camera and photo access</h2>
-  <p>VoltAI asks for camera access so you can take scan and fridge photos. When you choose photos from your library, VoltAI only receives the photos you pick.</p>
+  <h2 id="rights">Your choices and rights</h2>
+  <ul>
+    <li><strong>Withdraw AI permission:</strong> Profile → Privacy → Withdraw. VoltAI will ask again before sending anything.</li>
+    <li><strong>Delete your data:</strong> delete individual scans in the app, or delete the app to remove everything stored on your phone.</li>
+    <li><strong>Waitlist:</strong> ask us to remove your email anytime.</li>
+    <li><strong>Subscriptions:</strong> manage or cancel anytime in your iPhone's Settings → your name → Subscriptions.</li>
+  </ul>
+  <p>Depending on where you live (for example, the EU, UK, or California and other U.S. states), you may have rights to access, correct, delete, or port your personal information, to object to or restrict processing, and to withdraw consent. Because VoltAI doesn't store your app data on its servers, most of it is under your direct control on your device. To exercise any right or ask a question, email us; we'll respond within the time required by law and won't discriminate against you for using your rights. Where the GDPR applies, we rely on your consent to process photos and health-related information, and on our legitimate interests to keep the service secure. You may also complain to your local data protection authority.</p>
 
-  <h2>Age</h2>
+  <h2 id="security">Security</h2>
+  <p>All data sent from the app travels over encrypted HTTPS connections. Our server's AI credentials are kept in secure server-side storage and never ship in the app. No system is perfectly secure, but by not storing your photos or results on servers, we keep the amount of data that could ever be exposed to a minimum.</p>
+
+  <h2 id="age">Age</h2>
   <p>VoltAI is not intended for people under 18 years of age.</p>
 
-  <h2>Your choices</h2>
-  <ul>
-    <li>Delete individual scans in the app, or delete the app to remove everything stored on your phone.</li>
-    <li>Ask us to remove your waitlist email anytime.</li>
-    <li>Only use AI features when you're comfortable sending the photos and details they need.</li>
-    <li>Manage or cancel your subscription anytime in your iPhone's Settings.</li>
-  </ul>
+  <h2 id="wellness">Wellness, not medical advice</h2>
+  <p>VoltAI provides general fitness and wellness estimates and suggestions. It isn't a medical service, its scores can be wrong, and it doesn't replace advice from a doctor or other qualified professional. Talk to a doctor before starting a new diet or exercise program, or if you have any health concerns.</p>
 
-  <h2>Health information</h2>
-  <p>VoltAI provides general wellness guidance and is not a medical service. Don't use it to diagnose or treat any condition.</p>
-
-  <h2>Changes</h2>
-  <p>If we change this policy, we'll update the date above and, for significant changes, let you know in the app.</p>
-
-  <h2>Contact</h2>
-  <p>Questions? Email <a href="mailto:ascendfitnesslife@gmail.com">ascendfitnesslife@gmail.com</a>.</p>
+  <h2 id="changes">Changes and contact</h2>
+  <p>If we change this policy, we'll update the date at the top. If a change affects what's sent for AI analysis or who receives it, VoltAI will ask for your permission again in the app before sending anything.</p>
+  <p>Questions or requests? Email <a href="mailto:ascendfitnesslife@gmail.com">ascendfitnesslife@gmail.com</a>.</p>
 </main>
 </body>
 </html>
