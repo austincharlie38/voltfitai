@@ -36,7 +36,7 @@
 <main>
   <p><a href="index.html" style="text-decoration:none">← Back to VoltAI</a></p>
   <h1>Volt<span>AI</span> Privacy Policy</h1>
-  <p class="date">Effective October 11, 2026</p>
+  <p class="date">Effective October 12, 2026</p>
 
   <div class="card">
     <p><strong>The short version</strong></p>
@@ -53,6 +53,7 @@
     <a href="#face-body">Face and body photos</a>
     <a href="#providers">Who processes your data</a>
     <a href="#retention">How long data is kept</a>
+    <a href="#abuse">Fair use and abuse prevention</a>
     <a href="#not-collected">What we don't collect</a>
     <a href="#permissions">Camera, photos, and notifications</a>
     <a href="#purchases">Subscriptions</a>
@@ -70,10 +71,11 @@
     <table>
       <thead><tr><th>Information</th><th>Where it goes</th><th>How long it's kept</th></tr></thead>
       <tbody>
-        <tr><td>Your profile (name, birthday, goals, sex, activity level, diet, allergies, plan length, goal description)</td><td>Your iPhone only. Some details are included in AI requests (see below); your name and birthday are never sent, only your age.</td><td>Until you delete it or the app</td></tr>
+        <tr><td>Your profile (name, birthday, goals, sex, activity level, diet, allergies, plan length, goal description) and workout survey answers</td><td>Your iPhone only. Some details are included in AI requests (see below); your name and birthday are never sent, only your age.</td><td>Until you delete it or the app</td></tr>
         <tr><td>Scan results, plans, checklist progress, saved recipes</td><td>Your iPhone only</td><td>Until you delete them or the app</td></tr>
         <tr><td>Small copies of your scan photos (for progress history)</td><td>Your iPhone only</td><td>Until you delete the scan or the app</td></tr>
         <tr><td>Photos and details you submit for a scan, plan, or Fridge AI</td><td>Encrypted to VoltAI's server (Supabase), then to Anthropic for AI analysis</td><td>VoltAI: not stored; held in memory only while your request is processed. Anthropic: deleted within 30 days unless flagged for a safety review; never used for AI training.</td></tr>
+        <tr><td>Usage records for abuse prevention: a random app install ID, a scrambled (hashed) version of your IP address, which feature you used, whether you're subscribed, and when</td><td>VoltAI's database (Supabase)</td><td>30 days. The record that your one free scan was used is kept up to 12 months. No photos or answers.</td></tr>
         <tr><td>Technical request logs</td><td>VoltAI's server (Supabase)</td><td>Short-term, for reliability and security. No photos or answers.</td></tr>
         <tr><td>Waitlist email (website only)</td><td>VoltAI's database (Supabase)</td><td>Until launch news ends or you ask us to remove it</td></tr>
       </tbody>
@@ -94,7 +96,7 @@
   <p>Data is sent only when you start one of these features yourself:</p>
   <ul>
     <li><strong>Face and body scan:</strong> the face and body photos you take or choose, plus your age, sex, activity level, goals, plan length, and goal description.</li>
-    <li><strong>Improvement plan:</strong> the profile details above, your diet and allergies, and a summary of your latest scan (scores and suggestions; no photos).</li>
+    <li><strong>Improvement plan:</strong> the profile details above, your diet and allergies, your workout survey answers (muscles you want to build, equipment, workout days per week, and lifting experience), and a summary of your latest scan (scores and suggestions; no photos).</li>
     <li><strong>Fridge AI:</strong> the food photos you take or choose (fridge, freezer, pantry, or single items), any food items you type, and your age, goals, diet, allergies, and latest scan priorities.</li>
   </ul>
   <p>Photos are resized and compressed on your phone before sending. They travel over an encrypted (HTTPS/TLS) connection to VoltAI's server, which forwards them to Anthropic, receives the result, and returns it to your phone. VoltAI's server holds your photos and details in memory only while it processes your request (usually under a minute) and then discards them. It doesn't save them to a database, file storage, or logs. Your result is saved only on your phone.</p>
@@ -122,15 +124,25 @@
   <ul>
     <li><strong>On your iPhone:</strong> until you delete it or the app.</li>
     <li><strong>VoltAI's server:</strong> photos and details aren't stored; they're discarded as soon as your result is returned. Technical logs (time of request, whether it succeeded, how much processing it used) contain no photos or answers and are kept only briefly for reliability and security.</li>
+    <li><strong>Usage records:</strong> kept 30 days; the record of your one free scan is kept up to 12 months (see <a href="#abuse">Fair use and abuse prevention</a>).</li>
     <li><strong>Anthropic:</strong> deleted within 30 days, unless flagged for a safety review or legally required to be kept longer.</li>
     <li><strong>Waitlist emails:</strong> until we stop sending launch news or you ask us to remove yours.</li>
   </ul>
+
+  <h2 id="abuse">Fair use and abuse prevention</h2>
+  <p>AI analysis costs us money each time it runs, so VoltAI's server limits how often each feature can be used and makes sure the free scan is used only once. To do that, each AI request includes:</p>
+  <ul>
+    <li><strong>A random app install ID.</strong> It's created by VoltAI on your iPhone, isn't connected to your name, Apple ID, or device hardware, and is never used for advertising or tracking. It's stored in your iPhone's Keychain, so it can stay the same if you reinstall the app.</li>
+    <li><strong>Your IP address,</strong> which we immediately turn into a scrambled (hashed) value and store only in that form, to stop one network from making unlimited requests.</li>
+    <li><strong>If you subscribe:</strong> Apple's signed proof of your subscription (the product, dates, and Apple's transaction number; no name, email, or payment details). Our server checks it with Apple's public certificates and doesn't store it.</li>
+  </ul>
+  <p>We keep a record of which feature was used, when, and whether you're subscribed, linked only to the install ID and hashed IP, for 30 days. The record that a free scan was used is kept up to 12 months. We use these records only to enforce limits and prevent abuse.</p>
 
   <h2 id="not-collected">What we don't collect</h2>
   <ul>
     <li>No account, email, password, or login in the app.</li>
     <li>No location, contacts, microphone, or health data from Apple Health.</li>
-    <li>No advertising identifiers, no analytics or tracking tools, and no tracking across other companies' apps or websites.</li>
+    <li>No advertising identifiers (IDFA), no analytics or tracking tools, and no tracking across other companies' apps or websites. The only identifier is the random install ID described above.</li>
     <li>No payment details (Apple handles payments).</li>
   </ul>
 
@@ -143,7 +155,7 @@
   <p>You can change these permissions anytime in your iPhone's Settings → VoltAI.</p>
 
   <h2 id="purchases">Subscriptions</h2>
-  <p>VoltAI Pro is sold through Apple's App Store. Apple processes payment using your Apple ID; we never receive your name, email, or payment details. The app checks your subscription status with Apple on your device.</p>
+  <p>VoltAI Pro is sold through Apple's App Store. Apple processes payment using your Apple ID; we never receive your name, email, or payment details. The app checks your subscription status with Apple on your device, and when you use an AI feature it sends Apple's signed proof of your subscription so our server can confirm it (see <a href="#abuse">Fair use and abuse prevention</a>).</p>
 
   <h2 id="waitlist">Website waitlist</h2>
   <p>If you join the waitlist on our website, we store your email address, the date you joined, and how you found us (for example, from TikTok). We use your email only to tell you when VoltAI launches and for occasional launch news. We don't share or sell it. When someone joins, we get an alert with the total count and source only, never the email. To be removed, email us and we'll delete it. The app doesn't use or connect to your waitlist email.</p>
