@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VoltAI: Face &amp; Body Coach</title>
 <meta name="description" content="Scan your face and body, get scores with a clear breakdown, and follow a 3–30 day plan built around your goals. Snap your fridge for recipes that fit.">
+<meta name="apple-itunes-app" content="app-id=6822580814">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <link rel="icon" type="image/png" href="assets/icon.png">
@@ -153,20 +154,8 @@
   .final img.app-icon { width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; box-shadow: 0 20px 60px rgba(139,92,246,.5); }
   .final .lead { margin: 16px auto 32px; max-width: 520px; }
 
-  .waitlist { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; }
-  .waitlist input[type=email] { flex: 1; min-width: 0; font: inherit; color: var(--text); background: var(--card); border: 1px solid var(--stroke); border-radius: 999px; padding: 12px 20px; outline: none; transition: border-color .15s, box-shadow .15s; }
-  .waitlist input[type=email]::placeholder { color: rgba(255,255,255,.4); }
-  .waitlist input[type=email]:focus { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(168,85,247,.3); }
-  .waitlist .btn { border: 0; font: inherit; font-weight: 700; cursor: pointer; flex: none; }
-  .waitlist .btn:disabled { opacity: .6; cursor: default; transform: none; }
   .btn:focus-visible, .appstore:focus-visible, a:focus-visible { outline: 2px solid var(--blush); outline-offset: 3px; }
-  .hp, .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .form-status { min-height: 1.6em; margin: 14px 0 0; font-weight: 600; }
-  .form-status.ok { color: var(--ice); }
-  .form-status.err { color: var(--blush); }
-  .form-fine { color: var(--muted); font-size: 13px; max-width: 480px; margin: 6px auto 0; }
-  .form-fine a { color: var(--text); }
-  @media (max-width: 480px) { .waitlist { flex-direction: column; } .waitlist .btn { justify-content: center; } }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   footer { border-top: 1px solid rgba(255,255,255,.08); padding: 40px 0 56px; color: var(--muted); font-size: 14px; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
@@ -195,7 +184,7 @@
       <a href="#privacy">Privacy</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a class="btn small" href="#waitlist">Join the waitlist</a>
+      <a class="btn small" href="https://apps.apple.com/app/voltai-face-body-coach/id6822580814" target="_blank" rel="noopener">Get the app</a>
     </div>
   </div>
 </nav>
@@ -207,13 +196,13 @@
       <h1>Scan. Plan.<br><span class="grad">Level up.</span></h1>
       <p class="lead">Scan your face and body, get scores with a clear breakdown of what's working and what to improve, then follow a 3–30 day plan built around your goals.</p>
       <div class="cta">
-        <a class="btn" href="#waitlist">Join the waitlist</a>
-        <span class="appstore" aria-label="Coming soon on the App Store">
+        <a class="btn" href="https://apps.apple.com/app/voltai-face-body-coach/id6822580814" target="_blank" rel="noopener">Get the app</a>
+        <a class="appstore" href="https://apps.apple.com/app/voltai-face-body-coach/id6822580814" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.06-.52 2.69-1.27z"/></svg>
-          <span><small>Coming soon on the</small><b>App Store</b></span>
-        </span>
+          <span><small>Download on the</small><b>App Store</b></span>
+        </a>
       </div>
-      <p class="note">Get an email the day VoltAI launches. Your first scan is free.</p>
+      <p class="note">Free to download for iPhone. Your first scan is free.</p>
     </div>
     <div class="hero-phones" aria-hidden="true">
       <div class="phone"><img src="assets/5-home.jpg" alt=""></div>
@@ -381,19 +370,15 @@
   </div>
 </section>
 
-<section class="final" id="waitlist">
+<section class="final" id="download">
   <div class="wrap reveal">
     <img class="app-icon" src="assets/icon.png" alt="VoltAI app icon">
-    <h2>Be first in line <span class="grad">for launch day.</span></h2>
-    <p class="lead">VoltAI is coming soon to iPhone. Join the waitlist and we'll email you when it's on the App Store.</p>
-    <form class="waitlist" id="waitlist-form" novalidate>
-      <label class="sr-only" for="waitlist-email">Email address</label>
-      <input id="waitlist-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254">
-      <input class="hp" id="waitlist-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn" id="waitlist-submit" type="submit">Join the waitlist</button>
-    </form>
-    <p class="form-status" id="waitlist-status" role="status" aria-live="polite"></p>
-    <p class="form-fine">Only launch news, no spam. Unsubscribe anytime by emailing <a href="mailto:voltaifitness@gmail.com">voltaifitness@gmail.com</a>. See our <a href="privacy.html#waitlist">privacy policy</a>.</p>
+    <h2>Your glow-up <span class="grad">starts with one scan.</span></h2>
+    <p class="lead">VoltAI is out now on the App Store for iPhone. Download it free and your first scan is on us.</p>
+    <a class="appstore" href="https://apps.apple.com/app/voltai-face-body-coach/id6822580814" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.06-.52 2.69-1.27z"/></svg>
+      <span><small>Download on the</small><b>App Store</b></span>
+    </a>
     <p class="follow">Follow along on TikTok: <a class="social" href="https://www.tiktok.com/@voltfitai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.6c.27 0 .53.04.77.11V9.75a5.73 5.73 0 0 0-.77-.05A5.69 5.69 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.24-1.48z"/></svg>@voltfitai</a></p>
   </div>
 </section>
@@ -420,47 +405,6 @@
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
   }, { threshold: 0.15 });
   document.querySelectorAll(".reveal").forEach(el => io.observe(el));
-
-  // Waitlist: signs up through the join_waitlist database function in Supabase.
-  // The key below is Supabase's public anon key; it can only call that function.
-  const SUPABASE_URL = "https://zlyxqghwiaqxntwpqsyn.supabase.co";
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpseXhxZ2h3aWFxeG50d3Bxc3luIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2NDIwODcsImV4cCI6MjEwNzIxODA4N30.9JPQEbI3IXttWrIDRmkuGtAxB0DrWZjDnXqPZQPFqyI";
-  const form = document.getElementById("waitlist-form");
-  const input = document.getElementById("waitlist-email");
-  const button = document.getElementById("waitlist-submit");
-  const status = document.getElementById("waitlist-status");
-  const ref = new URLSearchParams(location.search).get("ref");
-  const source = (ref || (/tiktok/i.test(document.referrer) ? "tiktok" : "web")).slice(0, 64);
-
-  function show(text, kind) { status.textContent = text; status.className = "form-status " + kind; }
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (document.getElementById("waitlist-website").value) return;
-    const email = input.value.trim();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      show("Enter a valid email address, like you@example.com.", "err");
-      input.focus();
-      return;
-    }
-    button.disabled = true;
-    button.textContent = "Joining…";
-    show("", "");
-    try {
-      const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/join_waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", apikey: SUPABASE_ANON_KEY, Authorization: "Bearer " + SUPABASE_ANON_KEY },
-        body: JSON.stringify({ email, source })
-      });
-      if (!res.ok) throw new Error(String(res.status));
-      form.hidden = true;
-      show("You're on the list. We'll email you when VoltAI launches.", "ok");
-    } catch (err) {
-      show("Couldn't join right now. Check your connection and try again.", "err");
-      button.disabled = false;
-      button.textContent = "Join the waitlist";
-    }
-  });
 </script>
 </body>
 </html>
