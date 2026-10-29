@@ -36,12 +36,12 @@
 <main>
   <p><a href="index.html" style="text-decoration:none">← Back to VoltAI</a></p>
   <h1>Volt<span>AI</span> Privacy Policy</h1>
-  <p class="date">Effective October 13, 2026</p>
+  <p class="date">Effective November 1, 2026</p>
 
   <div class="card">
     <p><strong>The short version</strong></p>
-    <p>VoltAI has no accounts. Your profile, results, plans, and saved recipes are stored only on your iPhone.</p>
-    <p>VoltAI's AI analysis does <strong>not</strong> run on your phone. When you start a scan, build a plan, or use Fridge AI, and only after you've given permission in the app, the photos and details that feature needs are sent over an encrypted connection to our server and on to our AI provider, <strong>Anthropic</strong> (the company behind the Claude AI model). Your result comes back to your phone.</p>
+    <p>VoltAI has no accounts. Your profile, results, plans, saved recipes, and meal scans are stored only on your iPhone.</p>
+    <p>VoltAI's AI analysis does <strong>not</strong> run on your phone. When you start a scan, build a plan, use Fridge AI, or scan a meal, and only after you've given permission in the app, the photos and details that feature needs are sent over an encrypted connection to our server and on to our AI provider, <strong>Anthropic</strong> (the company behind the Claude AI model). Your result comes back to your phone.</p>
     <p><strong>VoltAI does not store your photos or results on any server.</strong> Anthropic does not use them to train AI and deletes them within 30 days, unless they're flagged for a safety review.</p>
     <p>We don't sell your data, show ads, use analytics, or track you across apps and websites.</p>
   </div>
@@ -72,9 +72,9 @@
       <thead><tr><th>Information</th><th>Where it goes</th><th>How long it's kept</th></tr></thead>
       <tbody>
         <tr><td>Your profile (name, birthday, goals, sex, activity level, diet, allergies, plan length, goal description) and workout survey answers</td><td>Your iPhone only. Some details are included in AI requests (see below); your name and birthday are never sent, only your age.</td><td>Until you delete it or the app</td></tr>
-        <tr><td>Scan results, plans, checklist progress, saved recipes</td><td>Your iPhone only</td><td>Until you delete them or the app</td></tr>
-        <tr><td>Small copies of your scan photos (for progress history)</td><td>Your iPhone only</td><td>Until you delete the scan or the app</td></tr>
-        <tr><td>Photos and details you submit for a scan, plan, or Fridge AI</td><td>Encrypted to VoltAI's server (Supabase), then to Anthropic for AI analysis</td><td>VoltAI: not stored; held in memory only while your request is processed. Anthropic: deleted within 30 days unless flagged for a safety review; never used for AI training.</td></tr>
+        <tr><td>Scan results, plans, checklist progress, saved recipes, meal scan results</td><td>Your iPhone only</td><td>Until you delete them or the app</td></tr>
+        <tr><td>Small copies of your scan and meal photos (for your history)</td><td>Your iPhone only</td><td>Until you delete the scan or meal, or the app</td></tr>
+        <tr><td>Photos and details you submit for a scan, plan, Fridge AI, or meal scan</td><td>Encrypted to VoltAI's server (Supabase), then to Anthropic for AI analysis</td><td>VoltAI: not stored; held in memory only while your request is processed. Anthropic: deleted within 30 days unless flagged for a safety review; never used for AI training.</td></tr>
         <tr><td>Usage records for abuse prevention: a random app install ID, a scrambled (hashed) version of your IP address, which feature you used, whether you're subscribed, what the request cost us to process, and when</td><td>VoltAI's database (Supabase)</td><td>30 days. The record that your one free scan was used is kept up to 12 months. No photos or answers.</td></tr>
         <tr><td>Technical request logs</td><td>VoltAI's server (Supabase)</td><td>Short-term, for reliability and security. No photos or answers.</td></tr>
         <tr><td>Waitlist email (website only)</td><td>VoltAI's database (Supabase)</td><td>Until launch news ends or you ask us to remove it</td></tr>
@@ -92,12 +92,13 @@
   <p>We can't see or access this information. It's included in your iPhone's own backups if you use iCloud or computer backups, under Apple's privacy terms. Deleting a scan removes it; deleting the app removes everything.</p>
 
   <h2 id="ai">AI analysis and your permission</h2>
-  <p>VoltAI's scans, plans, and Fridge AI are powered by artificial intelligence that runs on a server, not on your device. <strong>Before anything is sent, VoltAI asks for your permission</strong> on a screen that explains what's sent, where it goes, and how long it's kept. If you don't agree, nothing is sent, and the AI features stay off. You can withdraw permission anytime in <strong>Profile → Privacy → AI processing</strong>.</p>
+  <p>VoltAI's scans, plans, Fridge AI, and meal scans are powered by artificial intelligence that runs on a server, not on your device. <strong>Before anything is sent, VoltAI asks for your permission</strong> on a screen that explains what's sent, where it goes, and how long it's kept. If you don't agree, nothing is sent, and the AI features stay off. You can withdraw permission anytime in <strong>Profile → Privacy → AI processing</strong>.</p>
   <p>Data is sent only when you start one of these features yourself:</p>
   <ul>
     <li><strong>Face and body scan:</strong> the face and body photos you take or choose, plus your age, sex, activity level, goals, plan length, and goal description.</li>
     <li><strong>Improvement plan:</strong> the profile details above, your diet and allergies, your workout survey answers (muscles you want to build, equipment, workout days per week, and lifting experience), and a summary of your latest scan (scores and suggestions; no photos).</li>
     <li><strong>Fridge AI:</strong> the food photos you take or choose (fridge, freezer, pantry, or single items), any food items you type, and your age, goals, diet, allergies, and latest scan priorities.</li>
+    <li><strong>Meal scan:</strong> the photo of your meal, any note you add about it (for example "cooked in butter"), and your age, goals, and diet.</li>
   </ul>
   <p>Photos are resized and compressed on your phone before sending. They travel over an encrypted (HTTPS/TLS) connection to VoltAI's server, which forwards them to Anthropic, receives the result, and returns it to your phone. VoltAI's server holds your photos and details in memory only while it processes your request (usually under a minute) and then discards them. It doesn't save them to a database, file storage, or logs. Your result is saved only on your phone.</p>
   <p>We use this information only to create the result you asked for. We don't use it for advertising, profiling, or training AI models.</p>
